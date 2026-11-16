@@ -64,9 +64,9 @@
 
   <script>
     const items = [
-      { id: "17530c30cc0447a59073fdfe9f947214", elementId: "numViews1" },
-      { id: "3257e32d391245ba9f7ac5ca9a56d886", elementId: "numViews2" },
-      { id: "d708a68b18dd4c45bf6c3cee8e22aad4", elementId: "numViews3" }
+      { id: "17530c30cc0447a59073fdfe9f947214", elementId: "numViews1", subtract: 17810 },
+      { id: "3257e32d391245ba9f7ac5ca9a56d886", elementId: "numViews2", subtract: 17807 },
+      { id: "d708a68b18dd4c45bf6c3cee8e22aad4", elementId: "numViews3", subtract: 17815 }
     ];
 
     items.forEach(item => {
@@ -76,7 +76,9 @@
         .then(response => response.json())
         .then(data => {
           if (data.numViews !== undefined) {
-            document.getElementById(item.elementId).textContent = data.numViews.toLocaleString();
+document.getElementById(item.elementId).textContent =
+  (Number(data.numViews) - Number(item.subtract)).toLocaleString();
+
           } else {
             document.getElementById(item.elementId).textContent = "numViews not found";
           }
